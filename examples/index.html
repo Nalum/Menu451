@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Menu451</title>
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.menu451.min.js"></script>
+        <script type="text/javascript">
+            //<![CDATA[
+                $(document).ready(function(){
+                    $('ul.menu').menu451();
+                });
+            //]]>
+        </script>
+    </head>
+    <body>
+        <ul class="menu">
+            <li id="div1"><a href="#">[ Div 1 ]</a></li>
+            <li id="div2"><a href="#">[ Div 2 ]</a></li>
+            <li id="div3"><a href="#">[ Div 3 ]</a></li>
+            <li id="div4"><a href="#">[ Div 4 ]</a></li>
+        </ul>
+        <br class="clear" />
+        <div id="div1-popup" class="popup">
+            <p>Div 1</p>
+        </div>
+        <div id="div2-popup" class="popup">
+            <p>Div 2</p>
+        </div>
+        <div id="div3-popup" class="popup">
+            <p>Div 3</p>
+        </div>
+        <div id="div4-popup" class="popup">
+            <p>Div 4</p>
+        </div>
+    </body>
+</html>

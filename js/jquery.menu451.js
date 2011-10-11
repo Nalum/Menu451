@@ -4,7 +4,7 @@
  * that it is fit for purpose. Use of the script, is entirely at the end users risk.
  *
  * @category Plugin
- * @package  Loader451
+ * @package  Menu451
  * @author   Luke Mallon <luke.mallon@nexus451.com>
  * @license  GNU GPL - http://www.gnu.org/licenses/gpl.txt
  * @link     https://github.com/nalum/Menu451

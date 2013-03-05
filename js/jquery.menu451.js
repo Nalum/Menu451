@@ -13,15 +13,15 @@
 
 /**
  * Menu451
- * 
+ *
  * jQuery plugin to show/hide menu popups.
- * 
+ *
  * Min Required:
  *      jQuery Version 1.2
- * 
+ *
  * Example Usage:
  *      $('ul.nav').menu451();
- * 
+ *
  * Default Options:
  *      idExtention     : '-popup'
  *      activeClass     : 'active'
@@ -29,88 +29,90 @@
  *      timeoutItems    : ['doc-popup', 0]
  */
 
-(function($) {
+(function ($) {
     $.fn.extend({
-        'menu451'   : function(options) {
+        'menu451'   : function (options) {
             var defaults = {
-                'idExtention'   : '-popup',
-                'activeClass'   : 'active',
-                'timeoutLength' : 350,
-                'timeoutItems'  : ['doc-popup', 0]
-            };
-            
-            var options = $.extend(defaults, options);
-            
-            return this.each(function() {
-                var obj = $(this);
-                var listItems = $('li', obj);
-                
-                listItems.each(function() {
-                    var li = $(this);
-                    
-                    if (li.attr('id').length > 0) {
-                        var menuItem = $('#' + li.attr('id') + options.idExtention);
-                        var timeoutId = $.inArray(menuItem.attr('id'), options.timeoutItems) + 1;
-                        
-                        li.hover(function() {
-                            li.addClass(options.activeClass);
-                            menuItem.show();
-                            clearTimeout(options.timeoutItems[timeoutId]);
-                        }, function() {
+                    'idExtention'   : '-popup',
+                    'activeClass'   : 'active',
+                    'timeoutLength' : 350,
+                    'timeoutItems'  : ['doc-popup', 0]
+                },
+                settings = $.extend({}, defaults, options);
+
+            return this.each(function () {
+                var $object = $(this),
+                    $listItems = $('li', $object);
+
+                $listItems.each(function () {
+                    var $li = $(this);
+
+                    if ($li.attr('id').length > 0) {
+                        var $menuItem = $('#' + $li.attr('id') + settings.idExtention),
+                            timeoutId = $.inArray($menuItem.attr('id'), settings.timeoutItems) + 1;
+
+                        $li.hover(function () {
+                            $li.addClass(settings.activeClass);
+                            $menuItem.show();
+                            clearTimeout(settings.timeoutItems[timeoutId]);
+                        }, function () {
                             if (timeoutId > 0) {
-                                options.timeoutItems[timeoutId] = setTimeout(function() {
-                                    menuItem.hide();
-                                    li.removeClass(options.activeClass);
-                                }, options.timeoutLength);
+                                settings.timeoutItems[timeoutId] = setTimeout(function () {
+                                    $menuItem.hide();
+                                    $li.removeClass(settings.activeClass);
+                                }, settings.timeoutLength);
                             } else {
-                                menuItem.hide();
-                                li.removeClass(options.activeClass);
+                                $menuItem.hide();
+                                $li.removeClass(settings.activeClass);
                             }
                         });
-                        
-                        menuItem.each(function() {
-                            var $this = $(this);
-                            var children = $this.find('.closePopup');
-                            children.click(function() {
-                                $this.hide();
-                                li.removeClass(options.activeClass);
+
+                        $menuItem.each(function () {
+                            var $item = $(this),
+                                children = $item.find('.closePopup');
+
+                            children.click(function () {
+                                $item.hide();
+                                $li.removeClass(settings.activeClass);
                             });
-                        }).hover(function() {
+                        }).hover(function () {
                             var $this = $(this);
-                            li.addClass(options.activeClass);
+
+                            $li.addClass(settings.activeClass);
                             $this.show();
-                            clearTimeout(options.timeoutItems[timeoutId]);
-                        }, function() {
+                            clearTimeout(settings.timeoutItems[timeoutId]);
+                        }, function () {
                             var $this = $(this);
-                            
-                            if ($.inArray($this.attr('id'), options.timeoutItems) >= 0) {
-                                options.timeoutItems[timeoutId] = setTimeout(function() {
-                                    li.removeClass(options.activeClass);
+
+                            if ($.inArray($this.attr('id'), settings.timeoutItems) >= 0) {
+                                settings.timeoutItems[timeoutId] = setTimeout(function () {
+                                    $li.removeClass(settings.activeClass);
                                     $this.hide();
-                                }, options.timeoutLength);
+                                }, settings.timeoutLength);
                             } else {
-                                li.removeClass(options.activeClass);
+                                $li.removeClass(settings.activeClass);
                                 $this.hide();
                             }
                         });
                     } else {
-                        li.hover(function() {
-                            li.addClass(options.activeClass);
-                        }, function() {
-                            li.removeClass(options.activeClass);
+                        $li.hover(function () {
+                            $li.addClass(settings.activeClass);
+                        }, function () {
+                            $li.removeClass(settings.activeClass);
                         });
                     }
-                    
-                    var liLinks = $('a', li);
-                    
-                    liLinks.click(function() {
+
+                    var $liLinks = $('a', $li);
+
+                    $liLinks.click(function (event) {
                         var $this = $(this);
+
                         if ($this.attr('href') == '#' || $this.attr('href').length <= 0) {
-                            return false;
+                            event.preventDefault();
                         }
                     });
                 });
             });
         }
     });
-})(jQuery);
+}(jQuery));

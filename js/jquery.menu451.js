@@ -5,7 +5,7 @@
  *
  * @category Plugin
  * @package  Menu451
- * @author   Luke Mallon <luke.mallon@nexus451.com>
+ * @author   Luke Mallon <luke.mallon@lukemallon.com>
  * @license  GNU GPL - http://www.gnu.org/licenses/gpl.txt
  * @link     https://github.com/nalum/Menu451
  * @version  1.1.0
